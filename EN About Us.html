@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>About Us | Familia Mondragón</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg: #000;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter,system-ui,sans-serif;
+}
+</style>
+
+<style>
+
+/* ===== BASE ===== */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #fff;
+  color: #111;
+}
+
+/* ===== HERO ===== */
+.about-hero {
+  text-align: center;
+  padding: 100px 20px 60px;
+  border-bottom: 1px solid #eee;
+}
+
+.about-hero img {
+  height: 70px;
+  margin-bottom: 20px;
+}
+
+.about-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  letter-spacing: 3px;
+}
+
+/* ===== HISTORIA ===== */
+.about-text {
+  max-width: 800px;
+  margin: 80px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.about-text p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #444;
+}
+
+/* ===== BLOQUES ===== */
+.values {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  padding: 80px 60px;
+  background: #f8f8f8;
+}
+
+.value-box {
+  text-align: center;
+}
+
+.value-box h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.value-box p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* ===== IMAGEN FAMILIA (PRO) ===== */
+.family-image {
+  position: relative;
+  width: 100%;
+  margin-top: 60px;
+}
+
+.family-image img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  display: block;
+}
+
+/* TEXTO ENCIMA */
+.family-image::after {
+  content: "Our essence is family";
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 22px;
+  letter-spacing: 2px;
+  font-family: 'Playfair Display', serif;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .values {
+    grid-template-columns: 1fr;
+    padding: 60px 30px;
+  }
+
+  .family-image img {
+    height: 300px;
+  }
+
+  .family-image::after {
+    font-size: 16px;
+    bottom: 20px;
+  }
+}
+</style>
+<link rel="stylesheet" href="css/menu2.css">
+<link rel="stylesheet" href="css/cart.css">
+<link rel="stylesheet" href="css/footer.css">
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<header class="navbar" id="navbar">
+
+  <div class="nav-left">
+    <span class="menu-btn">MENU</span>
+  </div>
+
+  <div class="nav-center">
+    <img src="IMAGES/LOGO.1.png" alt="logo">
+  </div>
+
+  <div class="nav-right">
+    <span class="nav-link" id="cartText">CART</span>
+  </div>
+
+</header>
+
+
+<!-- ===== HERO ===== -->
+<section class="about-hero">
+  <img src="IMAGES/LOGO.1.png" alt="logo">
+  <h1>FAMILIA MONDRAGÓN</h1>
+</section>
+
+<!-- ===== HISTORIA ===== -->
+<section class="about-text">
+  <p>
+    We are a family passionate about our roots and the tradition of mezcal.
+    Each bottle represents years of history, work, and dedication, passed
+    down from generation to generation.
+    <br><br>
+    At Mondragón Family, we believe in authenticity, respect for the land,
+    and sharing unique moments. Our mezcal is not just a drink — it is an
+    experience that connects culture, family, and tradition.
+  </p>
+</section>
+
+<!-- ===== MISIÓN / VISIÓN / VALORES ===== -->
+<section class="values">
+
+  <div class="value-box">
+    <h3>Mission</h3>
+    <p>
+      To offer artisanal mezcal of the highest quality, preserving our traditions
+      and sharing the essence of Mexico with the world.
+    </p>
+  </div>
+
+  <div class="value-box">
+    <h3>Vision</h3>
+    <p>
+      To become an internationally recognized brand for our authenticity,
+      quality, and respect for the artisanal process.
+    </p>
+  </div>
+
+  <div class="value-box">
+    <h3>Values</h3>
+    <p>
+      Tradition, family, respect for the land, authenticity, and passion for what we do.
+    </p>
+  </div>
+
+</section>
+
+<!-- ===== FOTO FAMILIA ===== -->
+<section class="family-image">
+  <img src="IMAGES/AGAVE2.webp" alt="Familia Mondragón">
+</section>
+
+
+<!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-logo-contact">
+        <h2><img src="IMAGES/LOGO.2.png" alt="Logo 1" class="logo1"></h2>
+        <p><strong>Find us at</strong></p>
+        <p>📞 +52 56 5792 3327</p>
+        <p>Oaxaca City 📍</p>
+      </div>
+      <div class="footer-links">
+        <h4>What are you looking for?</h4>
+        <ul>
+        <li><a href="EN Catalog.html">Full Catalog</a></li>
+        <li><a href="EN Contact.html">How to Buy</a></li>
+        <li><a href="EN About Us.html">About Us</a></li>
+
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>Follow us on social media</h4>
+        <div class="social-icons">
+         <a href="https://www.facebook.com/share/1DsAjvWKL2/?mibextid=wwXIfr"><img src="IMAGES/FB8.webp" alt="Facebook" /></a>
+          <a href="https://www.instagram.com/familiamondragonmezcal/"><img src="IMAGES/IG3.webp" alt="Instagram" /></a>
+          <a href="https://www.tiktok.com/@familiamondragonmezcal"><img src="IMAGES/TT2.webp" alt="TikTok" /></a>
+          <a href="https://www.youtube.com/@FamiliaMondrag%C3%B3n_Mezcal"><img src="IMAGES/YT4.webp" alt="YouTube" /></a>
+        </div>
+        
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© Familia Mondragón. All rights reserved.</p>
+      <p>Software Frankv_Hp</p>
+    </div>
+  </footer>
+
+
+
+<!-- ===== MENU ===== -->
+<div class="side-menu" id="sideMenu">
+  <button class="close-btn" id="closeMenu">✕</button>
+  <a href="EN Home.html">Home</a>
+  <a href="EN Products.html">Products</a>
+  <a href="EN About Us.html">About Us</a>
+  <a href="EN Contact.html">Contact</a>
+</div>
+
+<!-- ===== CARRITO ===== -->
+<div class="cart-panel" id="cartPanel">
+  <button class="close-btn" id="closeCart">✕</button>
+
+  <h3>Carrito</h3>
+
+  <div id="cartItems"></div>
+
+  <p>Total: <span id="cartTotal">$0 MXN</span></p>
+
+  <button id="buyBtn">Buy via WhatsApp</button>
+</div>
+
+
+
+
+
+
+
+<script src="js/menu.js"></script>
+<script src="js/cart.js"></script>
+
+</body>
+</html>

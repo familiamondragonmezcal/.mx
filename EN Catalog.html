@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Full Catalog</title>
+
+<!-- Fuente correcta -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg: #000;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter,system-ui,sans-serif;
+}
+</style>
+
+<link rel="stylesheet" href="css/menu.css">
+<link rel="stylesheet" href="css/cart.css">
+<link rel="stylesheet" href="css/footer.css">
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<header class="navbar" id="navbar">
+
+  <div class="nav-left">
+    <span class="menu-btn">MENU</span>
+  </div>
+
+  <div class="nav-center">
+    <img src="IMAGES/LOGO.1.png" alt="logo">
+  </div>
+
+  <div class="nav-right">
+    <span class="nav-link" id="cartText">CART</span>
+  </div>
+
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <video autoplay muted loop playsinline>
+    <source src="VIDEOS/vintage-2012---explosive-harmony---dom-pérignon.mp4" type="video/mp4">
+  </video>
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <h1>Dom Pérignon<br>2012</h1>
+  </div>
+</section>
+
+<!-- ===== PRODUCTOS ===== -->
+<section class="products-section">
+  <div class="products">
+
+    <div class="product">
+      <img src="IMAGES/cortijo.webp">
+      <h3>MEZCAL</h3>
+      <a href="EN Mezcal El Cortijo.html" class="btn-product">View more</a>
+    </div>
+
+    <div class="product">
+      <img src="IMAGES/cortijo2.webp">
+      <h3>MEZCAL</h3>
+      <a href="EN Mezcal El Cortijo.html" class="btn-product">View more</a>
+    </div>
+
+    <div class="product">
+      <img src="IMAGES/cortijo3.webp">
+      <h3>MEZCAL</h3>
+      <a href="EN Mezcal El Cortijo.html" class="btn-product">View more</a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.products-section .products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 80px 60px;
+  background: white;
+}
+.products-section .product {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.products-section .product img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+.products-section .product h3 {
+  font-size: 16px;
+  margin: 0;
+}
+.products-section .btn-product {
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #111;
+  border-bottom: 1px solid #111;
+  width: fit-content;
+}
+@media (max-width: 1024px) {
+  .products-section .products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .products-section .products {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+
+<!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-logo-contact">
+        <h2><img src="IMAGES/LOGO.1.png" alt="Logo 1" class="logo1"></h2>
+        <p><strong>Find us at</strong></p>
+        <p>📞 +52 56 5792 3327</p>
+        <p>Oaxaca City 📍</p>
+      </div>
+      <div class="footer-links">
+        <h4>What are you looking for?</h4>
+        <ul>
+        <li><a href="EN Catalog.html">Full Catalog</a></li>
+        <li><a href="EN Contact.html">How to Buy</a></li>
+        <li><a href="EN About Us.html">About Us</a></li>
+
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>Follow us on social media</h4>
+        <div class="social-icons">
+         <a href="https://www.facebook.com/share/1DsAjvWKL2/?mibextid=wwXIfr"><img src="IMAGES/FB8.webp" alt="Facebook" /></a>
+          <a href="https://www.instagram.com/familiamondragonmezcal/"><img src="IMAGES/IG3.webp" alt="Instagram" /></a>
+          <a href="https://www.tiktok.com/@familiamondragonmezcal"><img src="IMAGES/TT2.webp" alt="TikTok" /></a>
+          <a href="https://www.youtube.com/@FamiliaMondrag%C3%B3n_Mezcal"><img src="IMAGES/YT4.webp" alt="YouTube" /></a>
+        </div>
+        
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© Familia Mondragón. All rights reserved.</p>
+      <p>Software Frankv_Hp</p>
+    </div>
+  </footer>
+
+
+
+<!-- ===== MENU ===== -->
+<div class="side-menu" id="sideMenu">
+  <button class="close-btn" id="closeMenu">✕</button>
+  <a href="EN Home.html">Home</a>
+  <a href="EN Products.html">Products</a>
+  <a href="EN About Us.html">About Us</a>
+  <a href="EN Contact.html">Contact</a>
+</div>
+
+<!-- ===== CARRITO ===== -->
+<div class="cart-panel" id="cartPanel">
+  <button class="close-btn" id="closeCart">✕</button>
+
+  <h3>Cart</h3>
+
+  <div id="cartItems"></div>
+
+  <p>Total: <span id="cartTotal">$0 MXN</span></p>
+
+  <button id="buyBtn">Buy via WhatsApp</button>
+</div>
+
+
+
+
+
+
+
+<script src="js/menu.js"></script>
+<script src="js/cart.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mezcal El Cortijo | Familia Mondragón</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg: #000;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter,system-ui,sans-serif;
+}
+</style>
+<style>
+
+/* ===== BASE ===== */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  color: #111;
+  background: #fff;
+}
+
+/* ===== CONTENEDOR ===== */
+.product-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  padding: 100px 80px;
+}
+
+/* ===== IMAGEN ===== */
+.product-image img {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+}
+
+/* MINIATURAS */
+.thumbs {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.thumbs img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+.thumbs img:hover {
+  opacity: 1;
+}
+
+/* ===== INFO ===== */
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* TITULO */
+.product-info h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+/* SUBTEXTO */
+.subtitle {
+  font-size: 14px;
+  color: #777;
+}
+
+/* PRECIO */
+.price {
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+/* DESCRIPCIÓN */
+.description {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #444;
+}
+
+/* DETALLES */
+.details {
+  margin-top: 20px;
+}
+
+.details p {
+  margin: 5px 0;
+  font-size: 13px;
+}
+
+/* BOTÓN */
+.btn-buy {
+  margin-top: 30px;
+  padding: 12px 20px;
+  background: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 2px;
+  transition: 0.3s;
+}
+
+.btn-buy:hover {
+  background: #333;
+}
+
+/* ===== SECCIÓN HISTORIA ===== */
+.story {
+  padding: 80px;
+  background: #f8f8f8;
+}
+
+.story h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.story p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #444;
+  max-width: 800px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .product-container {
+    grid-template-columns: 1fr;
+    padding: 60px 30px;
+  }
+
+  .product-image img {
+    height: 400px;
+  }
+}
+.product-image {
+  position: relative;
+}
+
+/* FLECHAS */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+  border: none;
+  font-size: 24px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.arrow:hover {
+  background: rgba(0,0,0,0.7);
+}
+
+.arrow.left {
+  left: 10px;
+}
+
+.arrow.right {
+  right: 10px;
+}
+
+/* CONTADOR */
+.image-counter {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+</style>
+<link rel="stylesheet" href="css/menu2.css">
+<link rel="stylesheet" href="css/cart.css">
+<link rel="stylesheet" href="css/footer.css">
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<header class="navbar" id="navbar">
+
+  <div class="nav-left">
+    <span class="menu-btn">MENU</span>
+  </div>
+
+  <div class="nav-center">
+    <img src="IMAGES/LOGO.1.png" alt="logo">
+  </div>
+
+  <div class="nav-right">
+    <span class="nav-link" id="cartText">CART</span>
+  </div>
+
+</header>
+
+<!-- ===== PRODUCTO ===== -->
+<section class="product-container">
+
+  <!-- IMAGEN -->
+
+<div class="product-image">
+
+  <!-- CONTADOR -->
+  <div class="image-counter" id="counter">1 / 4</div>
+
+  <!-- IMAGEN PRINCIPAL -->
+  <img id="mainImage" src="IMAGES/cortijo.webp">
+
+  <!-- FLECHAS -->
+  <button class="arrow left" onclick="prevImage()">&#10094;</button>
+  <button class="arrow right" onclick="nextImage()">&#10095;</button>
+<script>
+
+const images = [
+  "IMAGES/cortijo.webp",
+  "IMAGES/cortijo2.webp",
+  "IMAGES/cortijo3.webp",
+  "IMAGES/cortijo4.webp"
+];
+
+let current = 0;
+
+function updateImage(){
+  document.getElementById("mainImage").src = images[current];
+  document.getElementById("counter").innerText = `${current + 1} / ${images.length}`;
+}
+
+function nextImage(){
+  current = (current + 1) % images.length;
+  updateImage();
+}
+
+function prevImage(){
+  current = (current - 1 + images.length) % images.length;
+  updateImage();
+}
+
+</script>
+</div>
+
+  <!-- INFO -->
+  <div class="product-info">
+
+    <h1>Mezcal Espadín Capón - El Cortijo</h1>
+    <div class="subtitle">Artisanal • Oaxaca, México</div>
+
+    <div class="price">$850 MXN</div>
+
+    <div class="description">
+Traditional young mezcal at 45° for those seeking more intense flavor and aroma.
+
+Crafted through a double artisanal distillation process, capturing the true essence of agave.
+
+It offers a floral and fruity bouquet for a refined tasting experience.
+    </div>
+
+    <!-- DETALLES -->
+    <div class="details">
+    <p><strong>Espadín Mezcal 45% Alc. Vol.</strong></p>
+    <p><strong>Master Distillers:</strong> Fam. Mendez & García</p>
+    <p><strong>Agave:</strong> Agave Angustifolia Haw</p>
+    <p><strong>Age:</strong> 9 to 10 years</p>
+    <p><strong>Distillation:</strong> Double distillation in copper still</p>
+    <p><strong>Mill:</strong> Tahona</p>
+    <p><strong>Oven:</strong> Underground conical pit</p>
+    <p><strong>Fermentation:</strong> Natural in wooden vats</p>
+    </div>
+
+    <button onclick="addToCart('Mezcal Espadín Capón - El Cortijo', 850, 'IMAGES/cortijo.webp')">
+  Añadir al carrito
+</button>
+
+  </div>
+
+</section>
+
+<!-- ===== HISTORIA ===== -->
+<section class="story">
+
+  <h2>Our Story</h2>
+
+  <p>
+Our origins date back to 1795 in Santiago Matatlán, Oaxaca. We are the sixth generation of mezcal producers.
+
+We oversee the entire production chain, from cultivation to commercialization, crafting only 100% agave artisanal mezcals from both wild and cultivated agaves.
+
+Our mezcal is featured in some of the finest restaurants in Mexico. We honor our traditions by focusing on quality rather than competition.
+
+Today, we proudly have over 70 years as a brand.
+  </p>
+
+</section>
+
+<!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-logo-contact">
+        <h2><img src="IMAGES/LOGO.1.png" alt="Logo 1" class="logo1"></h2>
+        <p><strong>Find us at</strong></p>
+        <p>📞 +52 56 5792 3327</p>
+        <p>Oaxaca City 📍</p>
+      </div>
+      <div class="footer-links">
+        <h4>What are you looking for?</h4>
+        <ul>
+        <li><a href="EN Catalog.html">Full Catalog</a></li>
+        <li><a href="EN Contact.html">How to Buy</a></li>
+        <li><a href="EN About Us.html">About Us</a></li>
+
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>Follow us on social media</h4>
+        <div class="social-icons">
+         <a href="https://www.facebook.com/share/1DsAjvWKL2/?mibextid=wwXIfr"><img src="IMAGES/FB8.webp" alt="Facebook" /></a>
+          <a href="https://www.instagram.com/familiamondragonmezcal/"><img src="IMAGES/IG3.webp" alt="Instagram" /></a>
+          <a href="https://www.tiktok.com/@familiamondragonmezcal"><img src="IMAGES/TT2.webp" alt="TikTok" /></a>
+          <a href="https://www.youtube.com/@FamiliaMondrag%C3%B3n_Mezcal"><img src="IMAGES/YT4.webp" alt="YouTube" /></a>
+        </div>
+        
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© Familia Mondragón. All rights reserved.</p>
+      <p>Software Frankv_Hp</p>
+    </div>
+  </footer>
+
+
+
+<!-- ===== MENU ===== -->
+<div class="side-menu" id="sideMenu">
+  <button class="close-btn" id="closeMenu">✕</button>
+  <a href="EN Home.html">Home</a>
+  <a href="EN Products.html">Products</a>
+  <a href="EN About Us.html">About Us</a>
+  <a href="EN Contact.html">Contact</a>
+</div>
+
+<!-- ===== CARRITO ===== -->
+<div class="cart-panel" id="cartPanel">
+  <button class="close-btn" id="closeCart">✕</button>
+
+  <h3>Cart</h3>
+
+  <div id="cartItems"></div>
+
+  <p>Total: <span id="cartTotal">$0 MXN</span></p>
+
+  <button id="buyBtn">Buy via WhatsApp</button>
+</div>
+
+
+
+
+
+
+
+<script src="js/menu.js"></script>
+<script src="js/cart.js"></script>
+
+</body>
+</html>

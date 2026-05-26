@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Select Language</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* ===== BASE ===== */
+body {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+/* ===== TEXTURA ===== */
+body::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(#1a4fa310 1px, transparent 1px);
+  background-size: 25px 25px;
+  opacity: 0.3;
+  z-index: 0;
+}
+
+/* ===== VIDEO ===== */
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.08;
+  z-index: -1;
+}
+
+/* ===== CONTENEDOR ===== */
+.container {
+  position: relative;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  padding: 50px;
+  border-radius: 20px;
+  animation: fadeUp 1s ease;
+  z-index: 2;
+}
+
+/* ===== LOGO ===== */
+.logo img {
+  width: 130px;
+  margin-bottom: 40px;
+}
+
+/* ===== TITULO ===== */
+h1 {
+  font-size: 18px;
+  letter-spacing: 4px;
+  color: #222;
+  margin-bottom: 30px;
+}
+
+h1::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: #1a4fa3;
+  margin: 12px auto;
+}
+
+/* ===== BOTONES ===== */
+.languages {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.lang {
+  cursor: pointer;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #1a4fa3;
+  padding: 10px 0;
+  transition: 0.3s;
+}
+
+.lang:hover {
+  letter-spacing: 3px;
+}
+
+/* ===== SELECT EDAD ===== */
+.age-select {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.age-select select {
+  padding: 8px;
+  border: 1px solid #1a4fa3;
+  background: transparent;
+  font-family: 'Playfair Display', serif;
+  color: #1a4fa3;
+}
+
+/* ===== EFECTO AGUA ===== */
+.water {
+  position: fixed;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(26,79,163,0.4) 0%, rgba(26,79,163,0.8) 40%, #1a4fa3 100%);
+  transform: scale(0);
+  animation: waterFill 1s forwards;
+  z-index: 9999;
+}
+
+@keyframes waterFill {
+  to {
+    transform: scale(25);
+  }
+}
+
+/* ===== ANIMACIÓN ===== */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  body {
+    padding: 20px;
+    overflow: auto;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- VIDEO -->
+<video autoplay muted loop id="bg-video">
+  <source src="video.mp4" type="video/mp4">
+</video>
+
+<div class="container">
+
+  <div class="logo">
+    <img src="IMAGES/LOGO.1.png">
+  </div>
+
+  <!-- ===== IDIOMA ===== -->
+  <h1 id="titleLang">Select Language</h1>
+
+  <div class="languages" id="langButtons">
+    <div class="lang" onclick="selectLang('es')">Español</div>
+    <div class="lang" onclick="selectLang('en')">English</div>
+    <div class="lang" onclick="selectLang('fr')">Français</div>
+  </div>
+
+  <!-- ===== EDAD ===== -->
+  <div id="ageSection" style="display:none; margin-top:30px;">
+
+    <h1 id="titleAge">Verifica tu edad</h1>
+
+    <div class="age-select">
+      <select id="day"><option>Día</option></select>
+      <select id="month"><option>Mes</option></select>
+      <select id="year"><option>Año</option></select>
+    </div>
+
+    <div class="languages">
+      <div class="lang" id="enterBtn" onclick="verifyAge()">Entrar</div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+let selectedLang = "";
+
+/* ===== TEXTOS ===== */
+const texts = {
+  es: {
+    age: "Verifica tu edad",
+    enter: "Entrar",
+    day: "Día",
+    month: "Mes",
+    year: "Año",
+    error: "Debes ser mayor de edad",
+    incomplete: "Completa tu fecha"
+  },
+  en: {
+    age: "Verify your age",
+    enter: "Enter",
+    day: "Day",
+    month: "Month",
+    year: "Year",
+    error: "You must be of legal age",
+    incomplete: "Complete your birth date"
+  },
+  fr: {
+    age: "Vérifiez votre âge",
+    enter: "Entrer",
+    day: "Jour",
+    month: "Mois",
+    year: "Année",
+    error: "Vous devez être majeur",
+    incomplete: "Complétez votre date"
+  }
+};
+
+/* ===== SELECCIONAR IDIOMA ===== */
+function selectLang(lang){
+  selectedLang = lang;
+
+  document.getElementById("langButtons").style.display = "none";
+  document.getElementById("titleLang").style.display = "none";
+  document.getElementById("ageSection").style.display = "block";
+
+  document.getElementById("titleAge").innerText = texts[lang].age;
+  document.getElementById("enterBtn").innerText = texts[lang].enter;
+
+  document.getElementById("day").options[0].text = texts[lang].day;
+  document.getElementById("month").options[0].text = texts[lang].month;
+  document.getElementById("year").options[0].text = texts[lang].year;
+}
+
+/* ===== LLENAR SELECTS ===== */
+const day = document.getElementById("day");
+const month = document.getElementById("month");
+const year = document.getElementById("year");
+
+for(let i=1;i<=31;i++) day.innerHTML += `<option value="${i}">${i}</option>`;
+for(let i=1;i<=12;i++) month.innerHTML += `<option value="${i}">${i}</option>`;
+
+let currentYear = new Date().getFullYear();
+for(let i=currentYear;i>=1900;i--) year.innerHTML += `<option value="${i}">${i}</option>`;
+
+let ageConfirmed = false;
+
+/* ===== VALIDAR EDAD ===== */
+function verifyAge(){
+
+  const d = parseInt(day.value);
+  const m = parseInt(month.value) - 1;
+  const y = parseInt(year.value);
+
+  if(!d || !m || !y){
+    alert(texts[selectedLang].incomplete);
+    return;
+  }
+
+  let birth = new Date(y,m,d);
+  let today = new Date();
+
+  let age = today.getFullYear() - birth.getFullYear();
+  let diff = today.getMonth() - birth.getMonth();
+
+  if(diff < 0 || (diff === 0 && today.getDate() < birth.getDate())){
+    age--;
+  }
+
+  if(age >= 18){
+    ageConfirmed = true;
+    goToSite();
+  } else {
+    alert(texts[selectedLang].error);
+  }
+}
+
+function goToSite(){
+
+  if(selectedLang === "es"){
+    window.location.href = "ES Página Principal.html";
+  }
+
+  if(selectedLang === "en"){
+    window.location.href = "EN Home.html";
+  }
+
+  if(selectedLang === "fr"){
+    window.location.href = "fr.html";
+  }
+}
+
+
+</script>
+
+</body>
+</html>

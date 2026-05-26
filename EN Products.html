@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Products</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .hero {
+      position: relative;
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 40px;
+      padding-bottom: 200px;
+      transition: background 0.6s ease;
+      color: white;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 0;
+    }
+
+    .text-content {
+      position: relative;
+      z-index: 1;
+      max-width: 500px;
+      margin-top: 40px;
+    }
+
+    .text-content h4 { font-weight: 400; opacity: 0.8; }
+    .text-content h1 { font-size: 56px; line-height: 1.2; margin: 10px 0; }
+    .text-content p { font-size: 15px; margin: 20px 0; opacity: 0.9; }
+
+    .discover {
+      background: white;
+      color: black;
+      font-weight: bold;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .carousel {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      width: 90%;
+      max-width: 900px;
+    }
+
+    .cards {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding-bottom: 10px;
+    }
+
+    .cards img {
+      width: 180px;
+      height: 260px;
+      border-radius: 20px;
+      object-fit: cover;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+
+    .controls {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .progress-area {
+      flex: 1;
+      margin: 0 20px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress {
+      width: 25%;
+      height: 100%;
+      background: white;
+      transition: width 0.3s;
+    }
+
+    #next {
+      background: rgba(255,255,255,0.3);
+      color: white;
+      padding: 10px 30px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .count {
+      font-size: 22px;
+      font-weight: bold;
+      min-width: 40px;
+      text-align: right;
+    }
+
+    .navbar {
+      background-color: rgba(255, 255, 255, 0);
+      padding: 15px 20px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar .logo { color: white; font-size: 20px; font-weight: bold; }
+
+    .nav-links { display: flex; gap: 20px; }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: #000000; }
+
+    .hamburger { display: none; flex-direction: column; cursor: pointer; }
+    .hamburger span { height: 3px; width: 25px; background: white; margin: 4px 0; border-radius: 2px; }
+
+    .logo { height: 50px; width: auto; max-height: 70px; }
+
+    .special-gallery {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 10px;
+      width: 100%;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .special-gallery .big {
+      grid-row: span 2;
+      width: 100%;
+      height: 100%;
+      border-radius: 15px;
+      object-fit: cover;
+    }
+
+    .special-gallery .small {
+      width: 100%;
+      height: 120px;
+      border-radius: 15px;
+      object-fit: cover;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.527);
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        padding: 20px;
+      }
+      .nav-links.active { display: flex; }
+      .hamburger { display: flex; }
+
+      .hero { padding: 20px; padding-bottom: 180px; }
+      .text-content h1 { font-size: 32px; }
+      .text-content p { font-size: 14px; }
+      .cards img { width: 140px; height: 200px; }
+      .controls { flex-direction: column; gap: 10px; align-items: center; }
+      .progress-area { width: 100%; margin: 10px 0; }
+      #next { width: 100%; }
+
+      .special-gallery { grid-template-columns: 1fr; }
+      .special-gallery .big,
+      .special-gallery .small { height: 200px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero { padding: 16px; padding-bottom: 160px; }
+      .text-content h1 { font-size: 26px; line-height: 1.1; }
+      .text-content h4 { font-size: 13px; }
+      .text-content p { font-size: 13px; }
+      .cards img { width: 120px; height: 180px; }
+      .carousel { width: 100%; left: 0; transform: none; padding: 0 16px; }
+      .cards { scrollbar-width: none; }
+      .cards::-webkit-scrollbar { display: none; }
+      #next { font-size: 14px; }
+      .count { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="IMAGES/LOGO.1.png" alt="Mi logo" class="logo">
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="EN Home.html">Home</a>
+      <a href="EN Products.html">Products</a>
+      <a href="EN About Us.html">About Us</a>
+      <a href="EN Contact.html">Contact</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <div class="hero" id="hero" style="background-image: url('IMAGES/AGAVE2.webp');">
+    <div class="overlay"></div>
+
+    <div class="text-content">
+      <h4 id="subtitle">Acapulco - Oaxaca</h4>
+      <h1 id="title">FRACCIONAMIENTO<br>AGUA AZUL</h1>
+      <p id="description">Tu mejor opción..</p>
+      <button class="discover" id="discoverBtn">Discover Now</button>
+    </div>
+
+    <div class="carousel">
+      <div class="cards" id="card-container"></div>
+      <div class="controls">
+        <button id="next">NEXT</button>
+        <div class="progress-area">
+          <div class="progress" id="progress-bar"></div>
+        </div>
+        <div class="count" id="count">01</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const slides = [
+      {
+        bg: 'IMAGES/AGAVE2.webp',
+        subtitle: 'Espadín Mezcal',
+        title: 'El Cortijo',
+        desc: '100% agave mezcal, artisanal, from wild and cultivated agaves.',
+        images: ['IMAGES/cortijo.webp', 'IMAGES/cortijo2.webp', 'IMAGES/cortijo3.webp', 'IMAGES/cortijo4.webp'],
+        link: 'EN Mezcal El Cortijo.html'
+      },
+      {
+        bg: 'IMAGES/AGAVE.webp',
+        subtitle: 'Espadín Mezcal',
+        title: 'El Cortijo',
+        desc: '100% agave mezcal, artisanal, from wild and cultivated agaves.',
+        images: ['IMAGES/cortijo.webp', 'IMAGES/cortijo2.webp', 'IMAGES/cortijo3.webp', 'IMAGES/cortijo4.webp'],
+        link: 'EN Mezcal El Cortijo.html'
+      },
+      {
+        bg: 'IMAGES/AGAVE3.webp',
+        subtitle: 'Espadín Mezcal',
+        title: 'El Cortijo',
+        desc: '100% agave mezcal, artisanal, from wild and cultivated agaves.',
+        images: ['IMAGES/cortijo.webp', 'IMAGES/cortijo2.webp', 'IMAGES/cortijo3.webp', 'IMAGES/cortijo4.webp'],
+        link: 'EN Mezcal El Cortijo.html'
+      },
+      {
+        bg: 'IMAGES/AGAVE3.webp',
+        subtitle: 'View our full catalog',
+        title: 'More Mezcals',
+        desc: 'Visit our complete catalog',
+        images: [],
+        link: 'EN Catalog.html'
+      }
+    ];
+
+    let index = 0;
+
+    const hero = document.getElementById("hero");
+    const subtitle = document.getElementById("subtitle");
+    const title = document.getElementById("title");
+    const description = document.getElementById("description");
+    const count = document.getElementById("count");
+    const progress = document.getElementById("progress-bar");
+    const cards = document.getElementById("card-container");
+    const nextBtn = document.getElementById("next");
+    const discoverBtn = document.getElementById("discoverBtn");
+
+    function loadSlide(i) {
+      const slide = slides[i];
+      hero.style.backgroundImage = `url('${slide.bg}')`;
+      subtitle.textContent = slide.subtitle;
+      title.innerHTML = slide.title;
+      description.textContent = slide.desc;
+
+      count.textContent = i + 1 < 10 ? `0${i + 1}` : String(i + 1);
+      progress.style.width = `${((i + 1) / slides.length) * 100}%`;
+      cards.innerHTML = '';
+
+      if (slide.title.includes("Más")) {
+        const gallery = document.createElement('div');
+        gallery.className = "special-gallery";
+        slide.images.forEach((src, idx) => {
+          const img = document.createElement('img');
+          img.src = src;
+          img.alt = 'Vista del proyecto';
+          img.classList.add(idx === 0 ? 'big' : 'small');
+          gallery.appendChild(img);
+        });
+        cards.appendChild(gallery);
+      } else {
+        slide.images.forEach(src => {
+          const img = document.createElement('img');
+          img.src = src;
+          img.alt = 'Vista del proyecto';
+          cards.appendChild(img);
+        });
+      }
+    }
+
+    // Descubre Ahora
+    discoverBtn.addEventListener("click", () => {
+      const currentSlide = slides[index];
+      if (currentSlide.link) window.location.href = currentSlide.link;
+    });
+
+    // Siguiente
+    nextBtn.addEventListener("click", () => {
+      index = (index + 1) % slides.length;
+      loadSlide(index);
+    });
+
+    // Swipe móvil
+    let touchStartX = 0, touchEndX = 0;
+    hero.addEventListener("touchstart", e => { touchStartX = e.changedTouches[0].screenX; });
+    hero.addEventListener("touchend", e => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchEndX < touchStartX - 50) index = (index + 1) % slides.length;
+      else if (touchEndX > touchStartX + 50) index = (index - 1 + slides.length) % slides.length;
+      loadSlide(index);
+    });
+
+    // Cargar primer slide
+    loadSlide(index);
+
+    // Menú hamburguesa
+    function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+    window.toggleMenu = toggleMenu;
+  </script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll("img").forEach(function(img) {
+      img.setAttribute("loading", "lazy");
+    });
+  });
+</script>
+
+</body>
+</html>

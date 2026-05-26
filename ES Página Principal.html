@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Página Principal</title>
+
+<!-- Fuente correcta -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg: #000;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter,system-ui,sans-serif;
+}
+</style>
+
+<link rel="stylesheet" href="css/menu.css">
+<link rel="stylesheet" href="css/cart.css">
+<link rel="stylesheet" href="css/footer.css">
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<header class="navbar" id="navbar">
+
+  <div class="nav-left">
+    <span class="menu-btn">MENU</span>
+  </div>
+
+  <div class="nav-center">
+    <img src="IMAGES/LOGO.1.png" alt="logo">
+  </div>
+
+  <div class="nav-right">
+    <span class="nav-link" id="cartText">CART</span>
+  </div>
+
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <video autoplay muted loop playsinline>
+    <source src="VIDEOS/vintage-2012---explosive-harmony---dom-pérignon.mp4" type="video/mp4">
+  </video>
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <h1>Dom Pérignon<br>2012</h1>
+  </div>
+</section>
+
+<!-- ===== PRODUCTOS ===== -->
+<section class="products-section">
+  <div class="products">
+
+    <div class="product">
+      <img src="IMAGES/cortijo.webp">
+      <h3>MEZCAL</h3>
+      <a href="ES Mezcal El Cortijo.html" class="btn-product">Ver más</a>
+    </div>
+
+    <div class="product">
+      <img src="IMAGES/cortijo2.webp">
+      <h3>MEZCAL</h3>
+      <a href="ES Mezcal El Cortijo.html" class="btn-product">Ver más</a>
+    </div>
+
+    <div class="product">
+      <img src="IMAGES/cortijo3.webp">
+      <h3>MEZCAL</h3>
+      <a href="ES Mezcal El Cortijo.html" class="btn-product">Ver más</a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.products-section .products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 80px 60px;
+  background: white;
+}
+.products-section .product {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.products-section .product img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+.products-section .product h3 {
+  font-size: 16px;
+  margin: 0;
+}
+.products-section .btn-product {
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #111;
+  border-bottom: 1px solid #111;
+  width: fit-content;
+}
+@media (max-width: 1024px) {
+  .products-section .products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .products-section .products {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<!-- Carrusel -->
+<div class="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="IMAGES/AGAVE2.webp" alt="Banner 1">
+      <div class="carousel-caption">
+        <h2>Origen Oaxaqueño</h2>
+        <p>Agave cultivado en tierras ancestrales</p>
+        <a href="ES Productos.html" class="btn">DESCUBRIR</a>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="IMAGES/AGAVE.webp" alt="Banner 2">
+      <div class="carousel-caption">
+        <h2>Mezcal Premium</h2>
+        <p>Disponible ahora en edición limitada</p>
+        <a href="ES Catálogo.html" class="btn">VER MÁS</a>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="IMAGES/AGAVE3.webp" alt="Banner 3">
+      <div class="carousel-caption">
+        <h2>Más que un mezcal</h2>
+        <p>Una experiencia para compartir momentos únicos</p>
+        <a href="ES Sobre Nosotros.html" class="btn">DESCUBRIR</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botones -->
+  <button class="prev">&#10094;</button>
+  <button class="next">&#10095;</button>
+
+  <!-- Indicadores -->
+  <div class="dots"></div>
+</div>
+
+<style>.carousel {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.carousel-inner {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+  min-width: 100%;
+  position: relative;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+.carousel-caption h2,
+.carousel-caption p {
+  color: #fff; /* texto blanco */
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #ffffff;
+}
+
+.carousel-caption h2 {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.carousel-caption p {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.btn {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.dots {
+  text-align: center;
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+}
+
+.dots span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  background: #bbb;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dots .active {
+  background: #333;
+}
+@media (max-width: 768px) {
+  .carousel-item img {
+    height: 250px; /* más bajo en móvil */
+  }
+
+  .carousel-caption h2 {
+    font-size: 18px;
+  }
+
+  .carousel-caption p {
+    font-size: 14px;
+  }
+
+  .btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+</style>
+<script>const items = document.querySelectorAll('.carousel-item');
+const dotsContainer = document.querySelector('.dots');
+let index = 0;
+let interval = setInterval(nextSlide, 5000);
+
+// Crear dots
+items.forEach((_, i) => {
+  const dot = document.createElement('span');
+  dot.addEventListener('click', () => showSlide(i));
+  dotsContainer.appendChild(dot);
+});
+updateDots();
+
+document.querySelector('.prev').addEventListener('click', prevSlide);
+document.querySelector('.next').addEventListener('click', nextSlide);
+
+function showSlide(i) {
+  index = (i + items.length) % items.length;
+  document.querySelector('.carousel-inner').style.transform = `translateX(-${index * 100}%)`;
+  updateDots();
+  resetInterval();
+}
+
+function nextSlide() { showSlide(index + 1); }
+function prevSlide() { showSlide(index - 1); }
+
+function updateDots() {
+  document.querySelectorAll('.dots span').forEach((dot, i) => {
+    dot.classList.toggle('active', i === index);
+  });
+}
+
+function resetInterval() {
+  clearInterval(interval);
+  interval = setInterval(nextSlide, 5000);
+}
+</script>
+
+<!-- ===== INSTAGRAM (CORREGIDO EXACTO) ===== -->
+<section class="instagram-section">
+<div class="ig-header">
+  <img src="IMAGES/LOGO.1.png" class="ig-logo">
+  <p class="ig-title">INSTAGRAM</p>
+  <h2 class="ig-user">@FamiliaMondragonMezcal</h2>
+</section>
+
+<style>
+.instagram-section {
+  padding: 80px 10px;
+  background: #fff;
+  text-align: center;
+  font-family: Inter, system-ui, sans-serif;
+}
+.ig-title {
+  font-size: 12px;
+  color: #777;
+  margin-bottom: 10px;
+}
+.ig-user {
+  font-size: 22px;
+  font-weight: 600;
+}
+.ig-header {
+  position: relative;
+  text-align: center;
+}
+
+/* 🔥 LOGO LIBRE */
+.ig-logo {
+  position: absolute;
+  top: -70px; /* ajustas */
+  left: 50%;
+  transform: translateX(-50%);
+
+  height: 65px; /* control total */
+}
+</style>
+
+<!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-logo-contact">
+        <h2><img src="IMAGES/LOGO.2.png" alt="Logo 1" class="logo1"></h2>
+        <p><strong>Encuéntranos en</strong></p>
+        <p>📞 +52 56 5792 3327</p>
+        <p>Oaxaca City 📍</p>
+      </div>
+      <div class="footer-links">
+        <h4>¿Qué estás buscando?</h4>
+        <ul>
+          <li><a href="ES Catálogo.html">Catálogo Completo</a></li>
+          <li><a href="ES Contacto.html">¿Cómo Comprar?</a></li>
+          <li><a href="ES Sobre Nosotros.html">Sobre Nosotros</a></li>
+
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>Síguenos en nuestras redes sociales</h4>
+        <div class="social-icons">
+         <a href="https://www.facebook.com/share/1DsAjvWKL2/?mibextid=wwXIfr"><img src="IMAGES/FB8.webp" alt="Facebook" /></a>
+          <a href="https://www.instagram.com/familiamondragonmezcal/"><img src="IMAGES/IG3.webp" alt="Instagram" /></a>
+          <a href="https://www.tiktok.com/@familiamondragonmezcal"><img src="IMAGES/TT2.webp" alt="TikTok" /></a>
+          <a href="https://www.youtube.com/@FamiliaMondrag%C3%B3n_Mezcal"><img src="IMAGES/YT4.webp" alt="YouTube" /></a>
+        </div>
+        
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© Familia Mondragón. Todos los derechos reservados.</p>
+      <p>Software Frankv_Hp</p>
+    </div>
+  </footer>
+
+
+
+<!-- ===== MENU ===== -->
+<div class="side-menu" id="sideMenu">
+  <button class="close-btn" id="closeMenu">✕</button>
+  <a href="ES Página Principal.html">Inicio</a>
+  <a href="ES Productos.html">Productos</a>
+  <a href="ES Sobre Nosotros.html">Sobre nosotros</a>
+  <a href="ES Contacto.html">Contacto</a>
+</div>
+
+<!-- ===== CARRITO ===== -->
+<div class="cart-panel" id="cartPanel">
+  <button class="close-btn" id="closeCart">✕</button>
+
+  <h3>Carrito</h3>
+
+  <div id="cartItems"></div>
+
+  <p>Total: <span id="cartTotal">$0 MXN</span></p>
+
+  <button id="buyBtn">Comprar por WhatsApp</button>
+</div>
+
+
+
+
+
+
+
+<script src="js/menu.js"></script>
+<script src="js/cart.js"></script>
+
+</body>
+</html>
